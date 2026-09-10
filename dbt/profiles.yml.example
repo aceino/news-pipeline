@@ -1,0 +1,24 @@
+dbt_news:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: news_analytics.duckdb
+      extensions:
+        - httpfs
+        - iceberg
+      secrets:
+        - type: s3
+          key_id: admin
+          secret: password
+          endpoint: localhost:9000
+          url_style: path
+          use_ssl: false
+      attach:
+        - path: ""
+          type: iceberg
+          alias: iceberg_catalog
+          options:
+            endpoint: "http://localhost:8181"
+            authorization_type: "none"
+            access_delegation_mode: "none"

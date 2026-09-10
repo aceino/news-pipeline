@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: stg_news_sentiment
+    columns:
+      - name: url
+        tests:
+          - not_null
+      - name: sentiment_score
+        tests:
+          - not_null
+      - name: sentiment_label
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['positive', 'negative', 'neutral']
+      - name: topic_cluster
+        tests:
+          - not_null
+
+  - name: fct_source_performance
+    columns:
+      - name: source
+        tests:
+          - not_null
+      - name: article_count
+        tests:
+          - not_null
+
+  - name: fct_sentiment_trend
+    columns:
+      - name: published_date
+        tests:
+          - not_null
+          - unique
+
+  - name: fct_topic_summary
+    columns:
+      - name: topic_cluster
+        tests:
+          - not_null

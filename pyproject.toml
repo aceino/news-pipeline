@@ -1,0 +1,20 @@
+[project]
+name = "newsapiproject"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "dbt-core>=1.12.3",
+    "dbt-duckdb>=1.11.0",
+    "kafka-python>=3.0.11",
+    "newsapi-python>=0.2.7",
+    "pandas>=3.0.5",
+    "pyarrow>=25.0.1",
+    "pyiceberg[pyarrow,s3fs]>=0.12.0",
+    "python-dotenv>=1.2.3",
+    "s3fs>=2026.7.0",
+    "scikit-learn>=1.9.0",
+    "streamlit>=1.63.0",
+    "vadersentiment>=3.3.2",
+]

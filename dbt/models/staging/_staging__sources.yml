@@ -1,0 +1,6 @@
+sources:
+  - name: iceberg_catalog
+    database: iceberg_catalog
+    schema: news
+    tables:
+      - name: news_sentiment

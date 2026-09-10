@@ -1,0 +1,19 @@
+name : 'dbt_news'
+version : 1.0.0
+
+profile: 'dbt_news'
+
+model-paths: [models]
+test-paths: [tests]
+
+clean-targets:
+- "targets"
+- "dbt_packages"
+
+models:
+  dbt_news_analyst:
+    staging :
+      +materialized : table
+
+    marts :
+      +materialized : table
