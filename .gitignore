@@ -22,3 +22,4 @@ venv/
 dbt/news_analytics.duckdb
 
 /dbt/profiles.yml
+
