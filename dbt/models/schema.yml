@@ -1,0 +1,148 @@
+version: 2
+
+models:
+
+  - name: dim_date
+    description: "Date dimension for news analytics."
+
+    columns:
+      - name: date_key
+        description: "Unique key for each date."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: full_date
+        description: "Calendar date."
+        data_tests:
+          - not_null
+
+
+  - name: dim_source
+    description: "Dimension containing unique news sources."
+
+    columns:
+      - name: source_key
+        description: "Unique key for each source."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: source_name
+        description: "Name of the news source."
+        data_tests:
+          - not_null
+
+
+  - name: dim_topic
+    description: "Dimension containing news topics."
+
+    columns:
+      - name: topic_key
+        description: "Unique key for each topic."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: topic_label
+        description: "Topic label."
+        data_tests:
+          - not_null
+
+
+  - name: dim_sentiment
+    description: "Dimension containing sentiment categories."
+
+    columns:
+      - name: sentiment_key
+        description: "Unique key for each sentiment."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: sentiment_label
+        description: "Sentiment category."
+        data_tests:
+          - not_null
+
+
+  - name: fact_articles
+    description: "Article-level fact table. One row represents one article."
+
+    columns:
+      - name: article_key
+        description: "Unique identifier for each article."
+        data_tests:
+          - not_null
+          - unique
+
+      - name: date_key
+        description: "Foreign key to dim_date."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: source_key
+        description: "Foreign key to dim_source."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_source')
+              field: source_key
+
+      - name: topic_key
+        description: "Foreign key to dim_topic."
+        data_tests:
+          - relationships:
+              to: ref('dim_topic')
+              field: topic_key
+
+      - name: sentiment_key
+        description: "Foreign key to dim_sentiment."
+        data_tests:
+          - relationships:
+              to: ref('dim_sentiment')
+              field: sentiment_key
+
+
+  - name: fct_daily_news_metrics
+    description: "Daily aggregated news metrics."
+
+    columns:
+      - name: published_date
+        data_tests:
+          - not_null
+          - unique
+
+      - name: article_count
+        data_tests:
+          - not_null
+
+
+  - name: fct_source_performance
+    description: "Aggregated news performance by source."
+
+    columns:
+      - name: source_name
+        data_tests:
+          - not_null
+          - unique
+
+      - name: article_count
+        data_tests:
+          - not_null
+
+
+  - name: fct_topic_summary
+    description: "Aggregated news metrics by topic."
+
+    columns:
+      - name: topic_label
+        data_tests:
+          - not_null
+
+      - name: article_count
+        data_tests:
+          - not_null

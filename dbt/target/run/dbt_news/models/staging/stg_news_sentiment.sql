@@ -1,4 +1,12 @@
-select
+
+    
+
+    create  table
+      "news_analytics"."main"."stg_news_sentiment__dbt_tmp"
+  
+    
+    as (
+      select
     source,
     author,
     title,
@@ -6,9 +14,11 @@ select
     url,
     cast(published_at as timestamp) as published_at,
     cast(fetched_at as timestamp) as fetched_at,
-    
     sentiment_score,
     sentiment_label,
     topic_cluster,
     topic_label
-from {{ source('iceberg_catalog', 'news_sentiment') }}
+from "iceberg_catalog"."news"."news_sentiment"
+    );
+    
+  

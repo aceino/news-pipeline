@@ -11,7 +11,7 @@ clean-targets:
 - "dbt_packages"
 
 models:
-  dbt_news_analyst:
+  dbt_news:
     staging :
       +materialized : table
 

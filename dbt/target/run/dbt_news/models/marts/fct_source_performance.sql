@@ -1,4 +1,12 @@
-select
+
+    
+
+    create  table
+      "news_analytics"."main"."fct_source_performance__dbt_tmp"
+  
+    
+    as (
+      select
     s.source_name,
     
     count(*) as article_count,
@@ -27,16 +35,19 @@ select
             then 1
             else 0
         end
-    ) as neutral_countz`
+    ) as neutral_count
 
-from {{ ref('fact_articles') }} f
+from "news_analytics"."main"."fact_articles" f
 
-join {{ ref('dim_source') }} s 
+join "news_analytics"."main"."dim_source" s 
     on f.source_key = s.source_key
 
-join {{ ref('dim_sentiment') }} ds
+join "news_analytics"."main"."dim_sentiment" ds
     on f.sentiment_key = ds.sentiment_key
 
 group by s.source_name
 
 order by article_count desc
+    );
+    
+  

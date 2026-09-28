@@ -17,10 +17,4 @@ venv/
 
 # dbt
 /dbt/.user.yml
-/dbt/target/
-/dbt/logs/
-dbt/news_analytics.duckdb
-
-/dbt/profiles.yml
-
 logs/

@@ -1,4 +1,4 @@
-    select
+select
         t.topic_cluster,
         t.topic_label,
 
@@ -6,9 +6,9 @@
 
         round(avg(sentiment_score), 3) as avg_sentiment_score
 
-    from {{ ref('fact_articles') }} f 
+    from "news_analytics"."main"."fact_articles" f 
 
-    join {{ ref('dim_topic') }} t 
+    join "news_analytics"."main"."dim_topic" t 
         on f.topic_key = t.topic_key
 
     group by 1,2 
